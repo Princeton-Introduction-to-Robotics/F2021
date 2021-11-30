@@ -21,6 +21,21 @@ import cv2
 
 ## Some helper functions:
 ## -----------------------------------------------------------------------------------------
+def position_estimate(scf):
+    log_config = LogConfig(name='Kalman Variance', period_in_ms=500)
+    log_config.add_variable('kalman.varPX', 'float')
+    log_config.add_variable('kalman.varPY', 'float')
+    log_config.add_variable('kalman.varPZ', 'float')
+
+    with SyncLogger(scf, log_config) as logger:
+        for log_entry in logger:
+            data = log_entry[1]
+            x = data['kalman.varPX']
+            y = data['kalman.varPY']
+            z = data['kalman.varPZ']
+            
+    print(x, y, z)
+    return x, y, z
 
 # Ascend and hover:
 def set_PID_controller(cf):

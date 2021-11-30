@@ -29,7 +29,7 @@ The script `test_cf.py` is a minimal implementation of the full control loop of 
 
 5. The Crazyflie is instructed to land.
 
-Thus, this script causes the drone to move right until it no longer sees a red object of significant size. To run this script, you will need to change the URI in the file to match your drone / group number.
+Thus, this script causes the drone to move right until it no longer sees a red object of significant size. To run this script, you will need to change the URI in the file to match your drone / group number. Additionally, this file contains a function `position_estimate` which you may fund useful. The function shows an example of retreiving the crazyflie's position estimate.
 
 ## Lab Setup
 
