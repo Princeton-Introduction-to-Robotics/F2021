@@ -22,18 +22,19 @@ import cv2
 ## Some helper functions:
 ## -----------------------------------------------------------------------------------------
 def position_estimate(scf):
-    log_config = LogConfig(name='Kalman Variance', period_in_ms=500)
-    log_config.add_variable('kalman.varPX', 'float')
-    log_config.add_variable('kalman.varPY', 'float')
-    log_config.add_variable('kalman.varPZ', 'float')
+    log_config = LogConfig(name='Position Estimate', period_in_ms=500)
+    log_config.add_variable('stateEstimate.x', 'float')
+    log_config.add_variable('stateEstimate.y', 'float')
+    log_config.add_variable('stateEstimate.z', 'float')
 
     with SyncLogger(scf, log_config) as logger:
         for log_entry in logger:
             data = log_entry[1]
-            x = data['kalman.varPX']
-            y = data['kalman.varPY']
-            z = data['kalman.varPZ']
-            
+            x = data['stateEstimate.x']
+            y = data['stateEstimate.y']
+            z = data['stateEstimate.z']
+            break
+
     print(x, y, z)
     return x, y, z
 
